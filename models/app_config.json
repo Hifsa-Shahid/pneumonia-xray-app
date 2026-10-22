@@ -1,0 +1,154 @@
+{
+  "class_names": [
+    "NORMAL",
+    "PNEUMONIA"
+  ],
+  "img_size": 224,
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "models": {
+    "resnet50": {
+      "checkpoint": "models/resnet50.pt",
+      "target_layer": "model.layer4[-1]",
+      "temperature": 0.99997878074646,
+      "threshold": 0.0808345302939415
+    },
+    "densenet121": {
+      "checkpoint": "models/densenet121.pt",
+      "target_layer": "model.features.norm5",
+      "temperature": 0.6788856387138367,
+      "threshold": 0.5540355443954468
+    },
+    "efficientnet_b0": {
+      "checkpoint": "models/efficientnet_b0.pt",
+      "target_layer": "model.features[-1]",
+      "temperature": 1.0407898426055908,
+      "threshold": 0.1606367528438568
+    }
+  },
+  "ensemble": {
+    "members": [
+      "resnet50",
+      "densenet121",
+      "efficientnet_b0"
+    ],
+    "threshold": 0.4150594174861908
+  },
+  "operating_point": "youden",
+  "scorecam": {
+    "weight_mode": "cic",
+    "batch_size": 64,
+    "default_target_class": 1
+  },
+  "test_metrics_with_ci": {
+    "resnet50": {
+      "threshold": 0.081,
+      "auc": "0.973 [0.958, 0.985]",
+      "accuracy": "0.853 [0.821, 0.884]",
+      "sensitivity": "0.997 [0.991, 1.000]",
+      "specificity": "0.611 [0.549, 0.675]"
+    },
+    "densenet121": {
+      "threshold": 0.554,
+      "auc": "0.975 [0.959, 0.987]",
+      "accuracy": "0.853 [0.820, 0.883]",
+      "sensitivity": "0.997 [0.992, 1.000]",
+      "specificity": "0.611 [0.548, 0.675]"
+    },
+    "efficientnet_b0": {
+      "threshold": 0.161,
+      "auc": "0.977 [0.964, 0.987]",
+      "accuracy": "0.845 [0.810, 0.874]",
+      "sensitivity": "0.997 [0.991, 1.000]",
+      "specificity": "0.590 [0.527, 0.650]"
+    },
+    "ensemble": {
+      "threshold": 0.415,
+      "auc": "0.979 [0.966, 0.989]",
+      "accuracy": "0.867 [0.834, 0.896]",
+      "sensitivity": "0.997 [0.991, 1.000]",
+      "specificity": "0.650 [0.586, 0.709]"
+    }
+  },
+  "shortcut_check": {
+    "resnet50": {
+      "auc_full_image": 0.973115275,
+      "auc_center_only": 0.8949375411,
+      "auc_frame_only": 0.9236905545
+    },
+    "densenet121": {
+      "auc_full_image": 0.9751534078,
+      "auc_center_only": 0.9581306158,
+      "auc_frame_only": 0.9285886478
+    },
+    "efficientnet_b0": {
+      "auc_full_image": 0.9771148367,
+      "auc_center_only": 0.9578128424,
+      "auc_frame_only": 0.8353276353
+    }
+  },
+  "faithfulness": [
+    {
+      "model": "densenet121",
+      "predicted": "NORMAL",
+      "n_images": 20,
+      "average_drop_pct": 90.71824667628697,
+      "increase_in_confidence_pct": 0.0,
+      "empty_map_pct": 75.0,
+      "sec_per_image": 1.6489150524139404
+    },
+    {
+      "model": "densenet121",
+      "predicted": "PNEUMONIA",
+      "n_images": 30,
+      "average_drop_pct": 0.005385785831245145,
+      "increase_in_confidence_pct": 73.33333333333333,
+      "empty_map_pct": 0.0,
+      "sec_per_image": 1.6558809995651245
+    },
+    {
+      "model": "efficientnet_b0",
+      "predicted": "NORMAL",
+      "n_images": 21,
+      "average_drop_pct": 30.575170271316725,
+      "increase_in_confidence_pct": 4.761904761904762,
+      "empty_map_pct": 100.0,
+      "sec_per_image": 0.9885187943776449
+    },
+    {
+      "model": "efficientnet_b0",
+      "predicted": "PNEUMONIA",
+      "n_images": 29,
+      "average_drop_pct": 1.1635385602018706,
+      "increase_in_confidence_pct": 13.793103448275861,
+      "empty_map_pct": 0.0,
+      "sec_per_image": 0.9893942619192189
+    },
+    {
+      "model": "resnet50",
+      "predicted": "NORMAL",
+      "n_images": 23,
+      "average_drop_pct": 48.697760423753735,
+      "increase_in_confidence_pct": 0.0,
+      "empty_map_pct": 56.52173913043478,
+      "sec_per_image": 2.67710338468137
+    },
+    {
+      "model": "resnet50",
+      "predicted": "PNEUMONIA",
+      "n_images": 27,
+      "average_drop_pct": 9.387849207626015,
+      "increase_in_confidence_pct": 0.0,
+      "empty_map_pct": 0.0,
+      "sec_per_image": 2.64675181000321
+    }
+  ]
+}
