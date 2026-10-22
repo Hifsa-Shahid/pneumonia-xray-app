@@ -3,7 +3,7 @@
 A deep-learning demo that estimates the probability of pneumonia from a frontal chest X-ray, using three
 fine-tuned CNNs (ResNet-50, DenseNet-121, EfficientNet-B0) and a calibrated ensemble.
 
-**Live demo:** _add your Streamlit link here_ (for example `https://your-app-name.streamlit.app`)
+**Live demo:** 'https://pneumonia-xray-screening.streamlit.app'
 
 > **Research project, not a medical device.** Do not use it to diagnose, treat or make decisions about any patient.
 
